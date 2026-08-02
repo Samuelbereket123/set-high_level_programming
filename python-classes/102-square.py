@@ -52,7 +52,7 @@ class Square:
         return self.area() > other.area()
 
     def __ge__(self, other):
-        """Check if this square's area is greater than or equal to another's."""
+        """Check if this square's area is >= another's."""
         return self.area() >= other.area()
 
     def __lt__(self, other):
@@ -60,5 +60,5 @@ class Square:
         return self.area() < other.area()
 
     def __le__(self, other):
-        """Check if this square's area is less than or equal to another's."""
+        """Check if this square's area is <= another's."""
         return self.area() <= other.area()
