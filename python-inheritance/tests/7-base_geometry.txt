@@ -51,6 +51,11 @@ Testing non-integer values:
     ...
     TypeError: dict_val must be an integer
 
+    >>> bg.integer_validator("set_val", {3, 4})
+    Traceback (most recent call last):
+    ...
+    TypeError: set_val must be an integer
+
     >>> bg.integer_validator("none_val", None)
     Traceback (most recent call last):
     ...
@@ -66,3 +71,14 @@ Testing integers less than or equal to 0:
     Traceback (most recent call last):
     ...
     ValueError: distance must be greater than 0
+
+Testing missing arguments:
+    >>> bg.integer_validator("age")
+    Traceback (most recent call last):
+    ...
+    TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+    >>> bg.integer_validator()
+    Traceback (most recent call last):
+    ...
+    TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
