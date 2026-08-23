@@ -31,7 +31,7 @@ Testing non-numeric element in matrix:
     ...
     TypeError: invalid data type for einsum
 
-Testing incompatible dimensions:
+Testing incompatible dimensions (shapes not aligned):
     >>> lazy_matrix_mul([[1, 2, 3]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
     ...
