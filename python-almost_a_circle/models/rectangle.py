@@ -85,19 +85,25 @@ class Rectangle(Base):
         for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
 
-    def update(self, *args):
-        """Assign an argument to each attribute using positional args.
+    def update(self, *args, **kwargs):
+        """Assign positional or keyword arguments to attributes.
 
         Args:
             *args (list): Attribute values (id, width, height, x, y).
+            **kwargs (dict): Key/value pairs of attributes.
         """
         attrs = ["id", "width", "height", "x", "y"]
-        for idx, arg in enumerate(args):
-            if idx < len(attrs):
-                setattr(self, attrs[idx], arg)
+        if args and len(args) != 0:
+            for idx, arg in enumerate(args):
+                if idx < len(attrs):
+                    setattr(self, attrs[idx], arg)
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key in attrs:
+                    setattr(self, key, value)
 
     def __str__(self):
         """Return the print() and str() representation of the Rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height
-        )
+            )
