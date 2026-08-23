@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""Unittests for Base model."""
+"""Unittests for Base class."""
 import unittest
 import os
 from models.base import Base
-from models.rectangle import Rectangle
-from models.square import Square
 
 
 class TestBase(unittest.TestCase):
-    """Unit tests for testing Base class methods."""
+    """Unit tests for testing the Base class."""
 
     def setUp(self):
-        """Reset __nb_objects before each test."""
+        """Reset private object count before each test."""
         Base._Base__nb_objects = 0
 
     def test_auto_id(self):
@@ -43,11 +41,10 @@ class TestBase(unittest.TestCase):
         d = [{'id': 12}]
         self.assertEqual(Base.to_json_string(d), '[{"id": 12}]')
 
-    def test_to_json_string_returns_string(self):
-        """Test to_json_string returns a string type."""
+    def test_to_json_string_type(self):
+        """Test to_json_string returns a string."""
         d = [{'id': 12}]
-        res = Base.to_json_string(d)
-        self.assertIsInstance(res, str)
+        self.assertIsInstance(Base.to_json_string(d), str)
 
     def test_from_json_string_none(self):
         """Test from_json_string(None)."""
@@ -62,11 +59,10 @@ class TestBase(unittest.TestCase):
         s = '[{"id": 89}]'
         self.assertEqual(Base.from_json_string(s), [{'id': 89}])
 
-    def test_from_json_string_returns_list(self):
-        """Test from_json_string returns a list type."""
+    def test_from_json_string_type(self):
+        """Test from_json_string returns a list."""
         s = '[{"id": 89}]'
-        res = Base.from_json_string(s)
-        self.assertIsInstance(res, list)
+        self.assertIsInstance(Base.from_json_string(s), list)
 
 
 if __name__ == '__main__':
