@@ -4,7 +4,7 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle with setter validation and printing logic."""
+    """Represent a rectangle with setter validation, area, display, and str."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize a new Rectangle.
@@ -82,3 +82,9 @@ class Rectangle(Base):
         """Print the Rectangle instance using the '#' character."""
         for _ in range(self.height):
             print("#" * self.width)
+
+    def __str__(self):
+        """Return the print() and str() representation of the Rectangle."""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height
+        )
