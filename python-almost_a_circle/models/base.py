@@ -5,6 +5,7 @@ The Base class serves as the base for all other classes in this project.
 It manages id attribute assignment across all instances to avoid duplication.
 """
 import json
+import os.path
 
 
 class Base:
@@ -96,3 +97,20 @@ class Base:
                 dummy = cls(1)
             dummy.update(**dictionary)
             return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Return a list of instances created from a JSON file.
+
+        Returns:
+            list: List of instantiated objects, or an empty list if
+                  the file does not exist.
+        """
+        filename = "{}.json".format(cls.__name__)
+        if not os.path.exists(filename):
+            return []
+        with open(filename, "r", encoding="utf-8") as f:
+            json_str = f.read()
+        dict_list = cls.from_json_string(json_str)
+        return [cls.create(**d) for d in dict_list]
