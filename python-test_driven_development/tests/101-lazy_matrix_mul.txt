@@ -19,11 +19,11 @@ Testing float matrix elements:
     >>> lazy_matrix_mul([[1.5, 2.5]], [[3.0, 4.0], [5.0, 6.0]])
     array([[17., 21.]])
 
-Testing m_a not being a matrix/list:
+Testing non-matrix input:
     >>> lazy_matrix_mul("not a list", [[1, 2], [3, 4]])
     Traceback (most recent call last):
     ...
-    TypeError: ...
+    ValueError: Scalar operands are not allowed, use '*' instead
 
 Testing non-numeric element in matrix:
     >>> lazy_matrix_mul([[1, "two"]], [[1, 2], [3, 4]])
