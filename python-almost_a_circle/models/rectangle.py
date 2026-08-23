@@ -4,7 +4,7 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle with setter validation rules and area logic."""
+    """Represent a rectangle with setter validation and printing logic."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize a new Rectangle.
@@ -77,3 +77,8 @@ class Rectangle(Base):
     def area(self):
         """Return the area of the Rectangle instance."""
         return self.width * self.height
+
+    def display(self):
+        """Print the Rectangle instance using the '#' character."""
+        for _ in range(self.height):
+            print("#" * self.width)
