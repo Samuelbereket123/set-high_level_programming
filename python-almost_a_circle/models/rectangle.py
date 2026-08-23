@@ -4,7 +4,7 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle with validation, area, display, str, and update."""
+    """Represent a rectangle with full attribute logic."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize a new Rectangle.
@@ -89,7 +89,7 @@ class Rectangle(Base):
         """Assign an argument to each attribute using positional args.
 
         Args:
-            *args (list): New attribute values in order (id, width, height, x, y).
+            *args (list): Attribute values (id, width, height, x, y).
         """
         attrs = ["id", "width", "height", "x", "y"]
         for idx, arg in enumerate(args):
