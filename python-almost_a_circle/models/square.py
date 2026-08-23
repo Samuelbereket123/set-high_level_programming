@@ -60,6 +60,20 @@ class Square(Rectangle):
                 if key in attrs:
                     setattr(self, key, value)
 
+    def to_dictionary(self):
+        """
+        Return the dictionary representation of a Square.
+
+        Returns:
+            dict: Dictionary containing id, size, x, and y.
+        """
+        return {
+            "id": self.id,
+            "size": self.size,
+            "x": self.x,
+            "y": self.y
+        }
+
     def __str__(self):
         """
         Return the string representation of the Square instance.
