@@ -8,7 +8,7 @@ def matrix_mul(m_a, m_b):
     """
     Multiplies 2 matrices (m_a and m_b).
 
-    Validates inputs strictly according to specified error message requirements.
+    Validates inputs according to specified requirements.
     """
     if type(m_a) is not list:
         raise TypeError("m_a must be a list")
@@ -28,12 +28,16 @@ def matrix_mul(m_a, m_b):
     for row in m_a:
         for elem in row:
             if type(elem) not in (int, float):
-                raise TypeError("m_a should contain only integers or floats")
+                raise TypeError(
+                    "m_a should contain only integers or floats"
+                )
 
     for row in m_b:
         for elem in row:
             if type(elem) not in (int, float):
-                raise TypeError("m_b should contain only integers or floats")
+                raise TypeError(
+                    "m_b should contain only integers or floats"
+                )
 
     m_a_row_len = len(m_a[0])
     if not all(len(row) == m_a_row_len for row in m_a):
