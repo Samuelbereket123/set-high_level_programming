@@ -4,7 +4,7 @@ from models.base import Base
 
 
 class Rectangle(Base):
-    """Represent a rectangle with validation, area, display, and str."""
+    """Represent a rectangle with validation, area, display, str, and update."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """Initialize a new Rectangle.
@@ -84,6 +84,17 @@ class Rectangle(Base):
             print()
         for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
+
+    def update(self, *args):
+        """Assign an argument to each attribute using positional args.
+
+        Args:
+            *args (list): New attribute values in order (id, width, height, x, y).
+        """
+        attrs = ["id", "width", "height", "x", "y"]
+        for idx, arg in enumerate(args):
+            if idx < len(attrs):
+                setattr(self, attrs[idx], arg)
 
     def __str__(self):
         """Return the print() and str() representation of the Rectangle."""
