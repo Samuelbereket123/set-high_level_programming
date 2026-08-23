@@ -4,6 +4,7 @@ This module defines the Base class.
 The Base class serves as the base for all other classes in this project.
 It manages id attribute assignment across all instances to avoid duplication.
 """
+import csv
 import json
 import os.path
 
@@ -114,3 +115,62 @@ class Base:
             json_str = f.read()
         dict_list = cls.from_json_string(json_str)
         return [cls.create(**d) for d in dict_list]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serialize list_objs to CSV format and write to <Class name>.csv.
+
+        Args:
+            list_objs (list): A list of Rectangle or Square instances.
+        """
+        filename = "{}.csv".format(cls.__name__)
+        with open(filename, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            if list_objs is not None:
+                for obj in list_objs:
+                    if cls.__name__ == "Rectangle":
+                        writer.writerow([
+                            obj.id, obj.width, obj.height, obj.x, obj.y
+                        ])
+                    elif cls.__name__ == "Square":
+                        writer.writerow([
+                            obj.id, obj.size, obj.x, obj.y
+                        ])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Deserialize instances from a CSV file <Class name>.csv.
+
+        Returns:
+            list: List of instances restored from CSV, or an empty list if
+                  the file does not exist.
+        """
+        filename = "{}.csv".format(cls.__name__)
+        if not os.path.exists(filename):
+            return []
+        instances = []
+        with open(filename, "r", newline="", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if not row:
+                    continue
+                row = [int(val) for val in row]
+                if cls.__name__ == "Rectangle":
+                    kwargs = {
+                        "id": row[0],
+                        "width": row[1],
+                        "height": row[2],
+                        "x": row[3],
+                        "y": row[4]
+                    }
+                elif cls.__name__ == "Square":
+                    kwargs = {
+                        "id": row[0],
+                        "size": row[1],
+                        "x": row[2],
+                        "y": row[3]
+                    }
+                instances.append(cls.create(**kwargs))
+        return instances
