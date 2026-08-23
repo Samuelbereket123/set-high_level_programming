@@ -1,0 +1,54 @@
+The ``5-text_indentation`` module
+=================================
+
+Using ``text_indentation``
+--------------------------
+
+Importing the function:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Testing standard text with special punctuation:
+    >>> text_indentation("Hello. World? How: are you")
+    Hello.
+    <BLANKLINE>
+    World?
+    <BLANKLINE>
+    How:
+    <BLANKLINE>
+    are you
+
+Testing leading and trailing spaces around punctuation:
+    >>> text_indentation("   Hello .   World ?   How :   are you   ")
+    Hello .
+    <BLANKLINE>
+    World ?
+    <BLANKLINE>
+    How :
+    <BLANKLINE>
+    are you   
+
+Testing text without punctuation:
+    >>> text_indentation("Hello world")
+    Hello world
+
+Testing non-string input:
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> text_indentation(["hello"])
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Testing missing argument:
+    >>> text_indentation()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
