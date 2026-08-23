@@ -1,24 +1,47 @@
 #!/usr/bin/python3
-"""Defines the Base model class."""
+"""
+This module defines the Base class.
+The Base class serves as the base for all other classes in this project.
+It manages id attribute assignment across all instances to avoid duplication.
+"""
+import json
 
 
 class Base:
-    """Represent the base model for all other classes in this project.
+    """
+    Base class for managing id attribute assignment across subclasses.
 
     Attributes:
-        __nb_objects (int): Number of instantiated Base objects.
+        __nb_objects (int): Private class attribute tracking created objects.
     """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """Initialize a new Base instance.
+        """
+        Initialize a Base instance.
 
         Args:
-            id (int, optional): The identity of the new Base instance.
+            id (int, optional): Unique identifier. Defaults to None.
         """
         if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """
+        Return the JSON string representation of a list of dictionaries.
+
+        Args:
+            list_dictionaries (list): A list of dictionaries.
+
+        Returns:
+            str: JSON string representation of list_dictionaries,
+                 or '[]' if list_dictionaries is None or empty.
+        """
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+        return json.dumps(list_dictionaries)
