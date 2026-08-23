@@ -21,7 +21,7 @@ class Rectangle(Base):
             height (int): The height of the rectangle.
             x (int, optional): The x coordinate. Defaults to 0.
             y (int, optional): The y coordinate. Defaults to 0.
-            id (int, optional): The identity of the rectangle. Defaults to None.
+            id (int, optional): The identity of the rectangle.
         """
         super().__init__(id)
         self.width = width
